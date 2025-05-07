@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image';
 import { IoMdMenu } from "react-icons/io";
-import { IoClose } from "react-icons/io5";
+import { SlMenu } from "react-icons/sl";
 
 const Navbar = () => {
   const [showNavBar, setShowNavBar] = useState(false)
@@ -45,7 +45,7 @@ const Navbar = () => {
         <div>
           {showNavBar ? (
             <button onClick={handleHideNavBar} className='text-3xl text-black'>
-              <IoClose />
+              <SlMenu />
             </button>
           ) : (
             <button onClick={handleShowNavBar} className='text-3xl text-black'>
