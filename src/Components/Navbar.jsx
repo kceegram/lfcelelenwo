@@ -1,0 +1,75 @@
+'use client'
+
+import React, { useState } from 'react'
+import Image from 'next/image';
+import { IoMdMenu } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+
+const Navbar = () => {
+  const [showNavBar, setShowNavBar] = useState(false)
+  
+  const handleShowNavBar = () => {
+    setShowNavBar(true)
+  }
+
+  const handleHideNavBar = () => {
+    setShowNavBar(false) // Fixed: was using setHideNavBar which doesn't exist
+  }
+
+  return (
+    <div className="relative">
+      {/* Desktop Navbar */}
+      <nav className='hidden lg:flex justify-between items-center bg-white px-10 py-3'>
+        <div className='flex'>
+          <Image src="/images/winnerslogo.png" alt="Church Logo" width={70} height={80} />
+          <h3 className='ml-2 pt-5 text-black text-md font-bold'>LIVING FAITH <br /> CHURCH ELELENWO</h3>
+        </div>
+
+        <div className='flex gap-10 text-black'>
+          <p className='hover:text-red-500 hover:cursor-pointer'>Home</p>
+          <p className='hover:text-red-500 hover:cursor-pointer'>About Us</p>
+          <p className='hover:text-red-500 hover:cursor-pointer'>Ministries</p>
+          <p className='hover:text-red-500 hover:cursor-pointer'>More</p>
+          <p className='hover:text-red-500 hover:cursor-pointer'>Contact Us</p>
+          <p className='hover:text-red-500 hover:cursor-pointer'>Give</p>
+        </div>
+      </nav>
+
+      {/* Mobile Navbar */}
+      <nav className='flex justify-between items-center px-5 py-3 bg-white lg:hidden'>
+        <div className='flex items-center'>
+          <Image src="/images/winnerslogo.png" alt="Church Logo" width={50} height={60} />
+          <h3 className='ml-2 text-black text-sm font-bold'>LIVING FAITH <br /> CHURCH ELELENWO</h3>
+        </div>
+        
+        <div>
+          {showNavBar ? (
+            <button onClick={handleHideNavBar} className='text-3xl text-black'>
+              <IoClose />
+            </button>
+          ) : (
+            <button onClick={handleShowNavBar} className='text-3xl text-black'>
+              <IoMdMenu />
+            </button>
+          )}
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      {showNavBar && (
+        <div className='lg:hidden fixed top-16 left-0 w-full h-screen bg-white z-50'>
+          <div className='flex flex-col p-5 space-y-6 text-lg'>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>Home</p>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>About Us</p>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>Ministries</p>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>More</p>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>Contact Us</p>
+            <p className='py-2 border-b hover:text-red-500 hover:cursor-pointer text-black'>Give</p>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+export default Navbar
