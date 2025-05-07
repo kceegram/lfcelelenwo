@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { IoMdMenu } from "react-icons/io";
+import { MdClear } from "react-icons/md";
 import { SlMenu } from "react-icons/sl";
 
 const Navbar = () => {
@@ -45,11 +45,11 @@ const Navbar = () => {
         <div>
           {showNavBar ? (
             <button onClick={handleHideNavBar} className='text-3xl text-black'>
-              <SlMenu />
+              <MdClear />
             </button>
-          ) : (
+            ) : (
             <button onClick={handleShowNavBar} className='text-3xl text-black'>
-              <IoMdMenu />
+              <SlMenu />
             </button>
           )}
         </div>
