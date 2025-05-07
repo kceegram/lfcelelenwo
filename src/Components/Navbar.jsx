@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import Image from 'next/image';
-import { MdClear } from "react-icons/md";
-import { SlMenu } from "react-icons/sl";
+// Removed react-icons imports
+// import { TbMenu } from "react-icons/tb";
+// import { IoMdClose } from "react-icons/io";
 
 const Navbar = () => {
   const [showNavBar, setShowNavBar] = useState(false)
@@ -13,7 +14,7 @@ const Navbar = () => {
   }
 
   const handleHideNavBar = () => {
-    setShowNavBar(false) // Fixed: was using setHideNavBar which doesn't exist
+    setShowNavBar(false)
   }
 
   return (
@@ -45,11 +46,13 @@ const Navbar = () => {
         <div>
           {showNavBar ? (
             <button onClick={handleHideNavBar} className='text-3xl text-black'>
-              <MdClear />
+              {/* Replaced IoMdClose with a close symbol */}
+              <span aria-hidden="true">✕</span>
             </button>
             ) : (
             <button onClick={handleShowNavBar} className='text-3xl text-black'>
-              <SlMenu />
+              {/* Replaced TbMenu with a hamburger menu symbol */}
+              <span aria-hidden="true">☰</span>
             </button>
           )}
         </div>
