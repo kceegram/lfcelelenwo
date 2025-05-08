@@ -62,12 +62,12 @@ const Navbar = () => {
       {showNavBar && (
         <div className='lg:hidden fixed top-16 left-0 w-full h-screen bg-white z-50'>
           <div className='flex flex-col p-5 space-y-6 text-lg'>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>Home</p>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>About Us</p>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>Ministries</p>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>More</p>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>Contact Us</p>
-            <p className='py-2 border-b hover:text-blue-700 hover:cursor-pointer text-black'>Give</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Home</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>About Us</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Ministries</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>More</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Contact Us</p>
+            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Give</p>
           </div>
         </div>
       )}
