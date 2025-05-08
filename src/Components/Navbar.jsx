@@ -27,12 +27,12 @@ const Navbar = () => {
         </div>
 
         <div className='flex gap-10 text-black'>
-          <p className='hover:text-red-700 hover:cursor-pointer'>Home</p>
-          <p className='hover:text-red-700 hover:cursor-pointer'>About Us</p>
-          <p className='hover:text-red-700 hover:cursor-pointer'>Ministries</p>
-          <p className='hover:text-red-700 hover:cursor-pointer'>More</p>
-          <p className='hover:text-red-700 hover:cursor-pointer'>Contact Us</p>
-          <p className='hover:text-red-700 hover:cursor-pointer'>Give</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>Home</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>About Us</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>Ministries</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>More</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>Contact Us</p>
+          <p className='hover:text-blue-700 hover:cursor-pointer'>Give</p>
         </div>
       </nav>
 
