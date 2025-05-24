@@ -1,17 +1,11 @@
-'Use Client'
-
-
-
 import React from 'react'
 
-
-
-const page = () => {
+const Footer = () => {
   return (
     <div>
-  
+      
     </div>
   )
 }
 
-export default page
+export default Footer
