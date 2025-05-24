@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <div className="absolute top-0 left-0 w-full z-50">
       {/* Desktop Navbar */}
-      <nav className='hidden lg:flex justify-between items-center bg-transparent px-8 py-1'>
+      <nav className='hidden lg:flex justify-between items-center bg-transparent bg-opacity-2 backdrop-blur-md px-8 py-1'>
         <div className='flex'>
           <Image src="/images/winnerslogo.png" alt="Church Logo" width={70} height={80} className='pb-1'/>
           <h3 className='ml-2 pt-3 text-white text-md font-bold drop-shadow-lg'>LIVING FAITH <br /> CHURCH ELELENWO</h3>
@@ -34,7 +34,7 @@ const Navbar = () => {
       </nav>
        
       {/* Mobile Navbar */}
-      <nav className='flex justify-between items-center px-5 py-3 bg-transparent lg:hidden'>
+      <nav className='flex justify-between items-center px-5 py-3 bg-transparent bg-opacity-2 backdrop-blur-md lg:hidden'>
         <div className='flex items-center'>
           <Image src="/images/winnerslogo.png" alt="Church Logo" width={50} height={60} />
           <h3 className='ml-2 text-white text-sm font-bold drop-shadow-lg'>LIVING FAITH <br /> CHURCH ELELENWO</h3>
