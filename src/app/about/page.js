@@ -16,7 +16,7 @@ const page = () => {
             <h2 className="text-2xl font-semibold mb-4">Living Faith Church Elelenwo</h2>
             <p className="text-gray-700 mb-4">
               Welcome to Living Faith Church Elelenwo. We are a community of believers 
-              committed to spreading the gospel and building lives through God's word.
+              committed to spreading the gospel and building lives through Gods word.
             </p>
             <p className="text-gray-700">
               Our church has been serving the Elelenwo community for many years, 
