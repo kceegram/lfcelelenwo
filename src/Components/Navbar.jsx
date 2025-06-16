@@ -27,7 +27,7 @@ const Navbar = () => {
            <Link href="/" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
             Home
            </Link>
-           <Link href="/about" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+           <Link href="/about page" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
             About Us
            </Link>
            <Link href="/ministries" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
