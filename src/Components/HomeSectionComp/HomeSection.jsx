@@ -4,6 +4,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
+
 export default function AutoType() {
   const [text, setText] = useState('');
   const fullText = "Welcome to Living Faith Church Elelenwo, where faith comes alive.";

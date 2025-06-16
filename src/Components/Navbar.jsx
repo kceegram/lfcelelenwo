@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image';
+import Link from 'next/link'
 
 const Navbar = () => {
   const [showNavBar, setShowNavBar] = useState(false)
@@ -23,14 +24,29 @@ const Navbar = () => {
         </div>
          
         <div className='flex gap-10 text-white'>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>Home</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>About Us</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>Ministries</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>More</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>Contact Us</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>Give</p>
-          <p className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>Education</p>
+           <Link href="/" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            Home
+           </Link>
+           <Link href="/about" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            About Us
+           </Link>
+           <Link href="/ministries" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            Ministries
+           </Link>
+           <Link href="/more" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            More
+           </Link>
+           <Link href="/contact" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            Contact Us
+           </Link>
+           <Link href="/give" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            Give
+           </Link>
+           <Link href="/education" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
+            Education
+           </Link>
         </div>
+
       </nav>
        
       {/* Mobile Navbar */}
@@ -67,12 +83,27 @@ const Navbar = () => {
           </div>
           <div className='flex flex-col p-5 space-y-6 text-lg pb-5'>
             <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Home</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>About Us</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Ministries</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>More</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Contact Us</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Give</p>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Education</p>
+            <Link href="/" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            Home
+            </Link>
+            <Link href="/about" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+             <p>About Us</p>
+            </Link>
+            <Link href="/ministries" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+              <p>Ministries</p>
+            </Link>
+            <Link href="/more" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <p>More</p>
+            </Link>
+            <Link href="/contact" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+             <p>Contact Us</p> 
+            </Link>
+            <Link href="/give" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+             <p>Give</p>
+            </Link>
+            <Link href="/education" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+             <p>Education</p>
+            </Link>
           </div>
         </div>
       )}
