@@ -82,9 +82,8 @@ const Navbar = () => {
             </button>
           </div>
           <div className='flex flex-col p-5 space-y-6 text-lg pb-5'>
-            <p className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>Home</p>
             <Link href="/" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
-            Home
+             <p>Home</p>
             </Link>
             <Link href="/about" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>About Us</p>
