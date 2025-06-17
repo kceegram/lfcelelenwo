@@ -43,7 +43,7 @@ const page = () => {
               <h3 className="text-2xl font-bold text-gray-800 mb-4">About Kingdom Heritage Model School Elelenwo</h3>
               
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Kingdom Heritage Model School (KHMS) Elelenwo is a proud branch of the renowned Kingdom Heritage Model School, Canaanland, Ota. As a primary school within the Winners' Chapel International network of schools, KHMS Elelenwo brings the same high standards of foundational education and Christian values to the Elelenwo community and surrounding areas.
+                Kingdom Heritage Model School (KHMS) Elelenwo is a proud branch of the renowned Kingdom Heritage Model School, Canaanland, Ota. As a primary school within the Winners Chapel International network of schools, KHMS Elelenwo brings the same high standards of foundational education and Christian values to the Elelenwo community and surrounding areas.
               </p>
               
               <p className="text-gray-700 mb-4 leading-relaxed">
