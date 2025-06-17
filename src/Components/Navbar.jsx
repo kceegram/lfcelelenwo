@@ -13,6 +13,11 @@ const Navbar = () => {
   const handleHideNavBar = () => {
      setShowNavBar(false)
   }
+
+  // Function to handle navigation clicks and close menu
+  const handleNavClick = () => {
+    setShowNavBar(false)
+  }
    
   return (
     <div className="absolute top-0 left-0 w-full z-50">
@@ -81,26 +86,33 @@ const Navbar = () => {
               <span aria-hidden="true">✕</span>
             </button>
           </div>
-          <div className='flex flex-col p-5 space-y-6 text-lg pb-5'>
-            <Link href="/" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+          
+          {/* Add backdrop to close menu when clicking outside */}
+          <div 
+            className='absolute inset-0 bg-transparent' 
+            onClick={handleHideNavBar}
+          ></div>
+          
+          <div className='flex flex-col p-5 space-y-6 text-lg pb-5 relative z-10'>
+            <Link href="/" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>Home</p>
             </Link>
-            <Link href="/about" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/about" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>About Us</p>
             </Link>
-            <Link href="/ministries" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/ministries" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
               <p>Ministries</p>
             </Link>
-            <Link href="/more" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/more" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
             <p>More</p>
             </Link>
-            <Link href="/contact" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/contact" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>Contact Us</p> 
             </Link>
-            <Link href="/give" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/give" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>Give</p>
             </Link>
-            <Link href="/education" className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
+            <Link href="/education" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>Education</p>
             </Link>
           </div>
