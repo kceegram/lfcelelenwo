@@ -43,7 +43,7 @@ const page = () => {
               <h3 className="text-2xl font-bold text-gray-800 mb-4">About Kingdom Heritage Model School Elelenwo</h3>
               
               <p className="text-gray-700 mb-4 leading-relaxed">
-                Kingdom Heritage Model School (KHMS) Elelenwo is a proud branch of the renowned Kingdom Heritage Model School, Canaanland, Ota. As a primary school within the Winners Chapel International network of schools, KHMS Elelenwo brings the same high standards of foundational education and Christian values to the Elelenwo community and surrounding areas.
+                Kingdom Heritage Model School (KHMS) Elelenwo is a proud branch of the renowned Kingdom Heritage Model School, Canaanland, Ota. As a primary school within the Winners' Chapel International network of schools, KHMS Elelenwo brings the same high standards of foundational education and Christian values to the Elelenwo community and surrounding areas.
               </p>
               
               <p className="text-gray-700 mb-4 leading-relaxed">
@@ -78,20 +78,6 @@ const page = () => {
               <p className="text-gray-700 mb-4 leading-relaxed">
                 KHMS Elelenwo offers comprehensive primary education programs covering Nursery through Primary 6, following the same proven curriculum framework as our parent institution in Canaanland, Ota. Our curriculum is based on the Nigerian National Curriculum for Basic Education, enhanced with creative teaching methods and Christian values integration.
               </p>
-
-              <h4 className="text-xl font-semibold text-gray-800 mb-3">Key Subjects & Activities</h4>
-              <ul className="text-gray-700 mb-4 leading-relaxed list-disc pl-6">
-                <li>English Language and Literature</li>
-                <li>Mathematics</li>
-                <li>Basic Science and Technology</li>
-                <li>Social Studies</li>
-                <li>Christian Religious Studies</li>
-                <li>Creative Arts and Crafts</li>
-                <li>Physical and Health Education</li>
-                <li>Computer Studies</li>
-                <li>French Language</li>
-                <li>Music and Cultural Activities</li>
-              </ul>
 
               <h4 className="text-xl font-semibold text-gray-800 mb-3">Facilities & Resources</h4>
               <p className="text-gray-700 mb-4 leading-relaxed">
