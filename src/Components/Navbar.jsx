@@ -5,6 +5,8 @@ import Link from 'next/link'
 
 const Navbar = () => {
   const [showNavBar, setShowNavBar] = useState(false)
+  const [showAboutDropdown, setShowAboutDropdown] = useState(false)
+  const [showMobileAboutDropdown, setShowMobileAboutDropdown] = useState(false)
      
   const handleShowNavBar = () => {
     setShowNavBar(true)
@@ -12,11 +14,19 @@ const Navbar = () => {
    
   const handleHideNavBar = () => {
      setShowNavBar(false)
+     setShowMobileAboutDropdown(false) // Close mobile dropdown when hiding navbar
   }
 
   // Function to handle navigation clicks and close menu
   const handleNavClick = () => {
     setShowNavBar(false)
+    setShowAboutDropdown(false)
+    setShowMobileAboutDropdown(false)
+  }
+
+  // Handle About dropdown toggle for mobile
+  const toggleMobileAboutDropdown = () => {
+    setShowMobileAboutDropdown(!showMobileAboutDropdown)
   }
    
   return (
@@ -32,9 +42,40 @@ const Navbar = () => {
            <Link href="/" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
             Home
            </Link>
-           <Link href="/about" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
-            About Us
-           </Link>
+           
+           {/* About Dropdown */}
+           <div 
+             className='relative'
+             onMouseEnter={() => setShowAboutDropdown(true)}
+             onMouseLeave={() => setShowAboutDropdown(false)}
+           >
+             <button className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg flex items-center'>
+               About Us
+               <svg className='ml-1 w-4 h-4' fill='currentColor' viewBox='0 0 20 20'>
+                 <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+               </svg>
+             </button>
+             
+             {showAboutDropdown && (
+               <div className='absolute top-full left-0 mt-1 w-48 bg-white rounded-md shadow-lg py-1 z-10'>
+                 <Link 
+                   href="/about/lfc-elelenwo" 
+                   onClick={handleNavClick}
+                   className='block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-red-600'
+                 >
+                   LFC ELELENWO
+                 </Link>
+                 <Link 
+                   href="/about/12-pillars" 
+                   onClick={handleNavClick}
+                   className='block px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-100 hover:text-red-600'
+                 >
+                   12 PILLARS
+                 </Link>
+               </div>
+             )}
+           </div>
+           
            <Link href="/ministries" className='hover:text-red-400 hover:cursor-pointer drop-shadow-lg'>
             Ministries
            </Link>
@@ -97,9 +138,43 @@ const Navbar = () => {
             <Link href="/" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
              <p>Home</p>
             </Link>
-            <Link href="/about" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
-             <p>About Us</p>
-            </Link>
+            
+            {/* Mobile About Dropdown */}
+            <div className='py-2 border-b'>
+              <button 
+                onClick={toggleMobileAboutDropdown}
+                className='flex items-center justify-between w-full hover:text-red-600 hover:cursor-pointer text-black'
+              >
+                <span>About Us</span>
+                <svg 
+                  className={`w-4 h-4 transition-transform ${showMobileAboutDropdown ? 'rotate-180' : ''}`} 
+                  fill='currentColor' 
+                  viewBox='0 0 20 20'
+                >
+                  <path fillRule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clipRule='evenodd' />
+                </svg>
+              </button>
+              
+              {showMobileAboutDropdown && (
+                <div className='mt-2 ml-4 space-y-2'>
+                  <Link 
+                    href="/about/lfc-elelenwo" 
+                    onClick={handleNavClick}
+                    className='block py-2 text-gray-600 text-sm font-semibold hover:text-red-600 hover:cursor-pointer'
+                  >
+                    LFC ELELENWO
+                  </Link>
+                  <Link 
+                    href="/about/12-pillars" 
+                    onClick={handleNavClick}
+                    className='block py-2 text-gray-600 text-sm font-semibold hover:text-red-600 hover:cursor-pointer'
+                  >
+                    12 PILLARS
+                  </Link>
+                </div>
+              )}
+            </div>
+            
             <Link href="/ministries" onClick={handleNavClick} className='py-2 border-b hover:text-red-600 hover:cursor-pointer text-black'>
               <p>Ministries</p>
             </Link>
