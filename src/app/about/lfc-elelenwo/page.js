@@ -85,7 +85,7 @@ const Page = () => {
                   </h3>
                   <div className="flex items-center justify-center lg:justify-start mb-4">
                     <div className="w-8 sm:w-12 h-0.5 bg-red-500 mr-3"></div>
-                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg">FOUNDER & PRESIDENT</span>
+                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg">FOUNDER &quot; PRESIDENT</span>
                   </div>
                   <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg">Living Faith Church Worldwide</p>
                 </div>
