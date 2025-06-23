@@ -219,7 +219,7 @@ const Page = () => {
             THE MANDATE
           </h2>
           <p className="text-xl leading-relaxed max-w-4xl mx-auto opacity-95">
-           
+            &quot;Now the hour has come to liberate the world from all oppressions of the devil through the preaching of the word of faith, and I am sending you to undertake this task.&quot;
           </p>
           <div className="w-32 h-1 bg-white mx-auto mt-6 opacity-80"></div>
         </div>
