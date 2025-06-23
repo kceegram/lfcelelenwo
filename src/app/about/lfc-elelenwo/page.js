@@ -85,7 +85,7 @@ const Page = () => {
                   </h3>
                   <div className="flex items-center justify-center lg:justify-start mb-4">
                     <div className="w-8 sm:w-12 h-0.5 bg-red-500 mr-3"></div>
-                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg">FOUNDER &quot; PRESIDENT</span>
+                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg">FOUNDER & PRESIDENT</span>
                   </div>
                   <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg">Living Faith Church Worldwide</p>
                 </div>
@@ -219,7 +219,7 @@ const Page = () => {
             THE MANDATE
           </h2>
           <p className="text-xl leading-relaxed max-w-4xl mx-auto opacity-95">
-            "Now the hour has come to liberate the world from all oppressions of the devil through the preaching of the word of faith, and I am sending you to undertake this task."
+            &#34;Now the hour has come to liberate the world from all oppressions of the devil through the preaching of the word of faith, and I am sending you to undertake this task.&#34;
           </p>
           <div className="w-32 h-1 bg-white mx-auto mt-6 opacity-80"></div>
         </div>
