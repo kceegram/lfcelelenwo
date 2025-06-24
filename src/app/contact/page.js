@@ -136,7 +136,7 @@ const Page = () => {
               )}
 
               <div className="mt-6 p-4 bg-red-50 rounded-lg">
-                <h4 className="font-semibold text-gray-800 mb-2">What you'll receive:</h4>
+                <h4 className="font-semibold text-gray-800 mb-2">What you&apos;ll receive:</h4>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li>• Weekly spiritual messages and devotionals</li>
                   <li>• Church event announcements and updates</li>
