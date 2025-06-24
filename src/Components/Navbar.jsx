@@ -147,7 +147,7 @@ const Navbar = () => {
               >
                 <span>About Us</span>
                 <svg 
-                  className={`w-4 h-4 transition-transform ${showMobileAboutDropdown ? 'rotate-180' : ''}`} 
+                  className={`w-6 h-6 transition-transform ${showMobileAboutDropdown ? 'rotate-180' : ''}`} 
                   fill='currentColor' 
                   viewBox='0 0 20 20'
                 >
