@@ -121,11 +121,11 @@ const Page = () => {
           data-aos-duration="2000"
           data-aos-delay="100"
         >
-          <div className="bg-white rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 max-w-6xl mx-auto">
+          <div className="bg-white rounded-xl  lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 max-w-6xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Image Container */}
               <div className="w-full lg:w-2/5 relative">
-                <div className="relative h-96 sm:h-80 md:h-96 lg:h-[450px] overflow-hidden">
+                <div className="relative h-full sm:h-full  md:h-full lg:h-[450px] overflow-hidden">
                   <Image
                     src="/BDO.jpg"
                     alt="Bishop David O. Oyedepo"
@@ -239,7 +239,7 @@ const Page = () => {
       </div>
 
       {/* About Church Section */}
-      <div className="bg-white mr-4 ml-4 lg:mr-32 lg:ml-32 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300 max-w-6xl mx-auto">
+      <div className="bg-white mr-4 ml-4 md:mr-20 md:ml-20 lg:mr-32 lg:ml-32 rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-300 max-w-6xl mx-auto">
         <div className="p-6 sm:p-8 lg:p-12">
           {/* Section Heading */}
           <div className="text-center mb-8 lg:mb-12">
@@ -271,7 +271,7 @@ const Page = () => {
       </div>
 
       {/* WORSHIP WITH US SECTION - NEWLY STYLED */}
-      <div className="bg-gradient-to-br from-gray-50 via-white to-blue-50 py-16 mt-16 mr-4 ml-4 rounded-lg lg:mr-32 lg:ml-32 lg:rounded-2xl">
+      <div className="bg-gradient-to-br from-gray-50 via-white to-blue-50 py-16 mt-16 mr-4 ml-4 md:mr-20 md:ml-20 rounded-xl lg:mr-32 lg:ml-32 lg:rounded-2xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header Section */}
@@ -384,7 +384,7 @@ const Page = () => {
       </div>
 
       {/* The Mandate */}
-      <div className="text-center mt-20 ml-4 mr-4 mb-24 lg:mt-20 lg:mr-32 lg:ml-32 pt-10">
+      <div className="text-center mt-20 ml-4 mr-4 md:mr-20 md:ml-20 mb-24 lg:mt-20 lg:mr-32 lg:ml-32 pt-10">
         <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-12 text-white shadow-2xl">
           <h2 className='text-2xl md:text-2xl hover:text-yellow-500 hover:cursor-pointer lg:text-4xl font-bold md:font-bold lg:font-bold mb-4 mt-10 transition-colors duration-300  font-serif'>
             LIVING FAITH CHURCH WORLDWIDE
