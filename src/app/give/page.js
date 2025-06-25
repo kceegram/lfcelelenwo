@@ -41,7 +41,7 @@ const Page = () => {
         
         {/* Bible Verse Text Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-white px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+          <div className="text-center text-red-500 px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
             <h1 className="font-serif italic text-xl md:text-2xl lg:text-3xl font-bold mb-4 tracking-wide">
               &quot;Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.&quot;
             </h1>
