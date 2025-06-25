@@ -138,7 +138,7 @@ const Page = () => {
               </form>
 
               {submitMessage && (
-                <div className="mt-4 p-3 bg-green-100 border border-green-300 text-green-700 rounded-lg">
+                <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-500 rounded-lg">
                   {submitMessage}
                 </div>
               )}

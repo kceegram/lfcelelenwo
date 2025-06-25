@@ -4,25 +4,24 @@ import { useEffect } from 'react'
 import React from 'react'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
   useEffect(() => {
-      // Initialize AOS when component mounts
-      const initAOS = async () => {
-        const AOS = (await import('aos')).default;
-        await import('aos/dist/aos.css');
-        
-        AOS.init({
-          duration: 1200,
-          easing: 'ease-out-cubic',
-          once: false, // Animation happens every time element comes into view
-          offset: 50,
-          delay: 0,
-        });
-      };
-  
-      initAOS();
-    }, []);
+    // Initialize AOS when component mounts
+    const initAOS = async () => {
+      const AOS = (await import('aos')).default;
+      await import('aos/dist/aos.css');
+      
+      AOS.init({
+        duration: 1200,
+        easing: 'ease-out-cubic',
+        once: false, // Animation happens every time element comes into view
+        offset: 50,
+        delay: 0,
+      });
+    };
 
+    initAOS();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -35,15 +34,14 @@ const page = () => {
           height={1080} 
           priority 
           className="w-full h-full object-cover" 
-          
         />
         
         {/* Overlay for better text readability */}
-        <div className="absolute inset-0  bg-opacity-40"></div>
+        <div className="absolute inset-0 bg-opacity-40"></div>
         
         {/* Bible Verse Text Overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-center text-red-500 px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
+          <div className="text-center text-white px-4 max-w-4xl" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500">
             <h1 className="font-serif italic text-xl md:text-2xl lg:text-3xl font-bold mb-4 tracking-wide">
               &quot;Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.&quot;
             </h1>
@@ -177,4 +175,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
