@@ -68,7 +68,7 @@ const Page = () => {
       title: "Wednesday - Midweek/Communion",
       icon: <HeartIcon />,
       times: [
-        { label: "Service", time: "5:00 PM - 6:00 PM" }
+        { label: "Service", time: "5:00 PM - 6:30 PM" }
       ],
       color: "from-red-500 to-red-600"
     },

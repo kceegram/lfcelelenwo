@@ -101,7 +101,7 @@ const page = () => {
 
               <h4 className="text-xl font-semibold text-gray-800 mb-3">Admission Information</h4>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                We welcome children from ages 2-12 years (Nursery 1 through Primary 6) who are ready to begin their educational journey in a Christian environment. Admission is open throughout the year, and we encourage parents to visit our campus to see our child-friendly facilities and meet our dedicated primary education teachers.
+                We welcome children from ages 2-11 years (Nursery 1 through Primary 6) who are ready to begin their educational journey in a Christian environment. Admission is open throughout the year, and we encourage parents to visit our campus to see our child-friendly facilities and meet our dedicated primary education teachers.
               </p>
 
               <div className="bg-red-50 border-l-4 border-red-500 p-4 mt-6">
