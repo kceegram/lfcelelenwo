@@ -9,9 +9,9 @@ const page = () => {
       id: 1,
       title: "Children's Ministry",
       image: "/childrenchurch.jpg",
-      verse: "Train up a child in the way he should go; even when he is old he will not depart from it.",
+      verse: "&quot;Train up a child in the way he should go; even when he is old he will not depart from it.&quot;",
       reference: "Proverbs 22:6",
-      benefit: "Our Children's Ministry provides a safe, nurturing environment where young hearts encounter God's love through engaging Bible stories, worship, crafts, and play. We lay the foundation for lifelong faith while teaching children about God's character and His plan for their lives.",
+      benefit: "&quot;Our Children&apos;s Ministry provides a safe, nurturing environment where young hearts encounter God&apos;s love through engaging Bible stories, worship, crafts, and play. We lay the foundation for lifelong faith while teaching children about God&apos;s character and His plan for their lives.&quot;",
       icon: "👶",
       color: "from-red-50 to-gray-100",
       borderColor: "border-red-300"
@@ -20,9 +20,9 @@ const page = () => {
       id: 2,
       title: "Teens Ministry",
       image: "/teenschurchimg.jpg",
-      verse: "Don't let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity.",
+      verse: "&quot;Don&apos;t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity.&quot;",
       reference: "1 Timothy 4:12",
-      benefit: "Our Teens Ministry creates a dynamic community where teenagers can explore their faith, ask tough questions, and discover their identity in Christ. Through relevant teaching, fellowship, and service opportunities, we equip teens to navigate life's challenges with biblical wisdom and peer support.",
+      benefit: "&quot;Our Teens Ministry creates a dynamic community where teenagers can explore their faith, ask tough questions, and discover their identity in Christ. Through relevant teaching, fellowship, and service opportunities, we equip teens to navigate life&apos;s challenges with biblical wisdom and peer support.&quot;",
       icon: "🌟",
       color: "from-red-50 to-gray-100",
       borderColor: "border-red-300"
@@ -31,9 +31,9 @@ const page = () => {
       id: 3,
       title: "Youth Ministry",
       image: "/youthchurchimg.jpg",
-      verse: "Remember your Creator in the days of your youth, before the days of trouble come and the years approach when you will say, 'I find no pleasure in them.'",
+      verse: "&quot;Remember your Creator in the days of your youth, before the days of trouble come and the years approach when you will say, &apos;I find no pleasure in them.&apos;&quot;",
       reference: "Ecclesiastes 12:1",
-      benefit: "Our Youth Ministry empowers young adults to live out their faith boldly in today's world. We focus on discipleship, leadership development, and practical life skills while building authentic relationships and preparing them for their calling in ministry, career, and family life.",
+      benefit: "&quot;Our Youth Ministry empowers young adults to live out their faith boldly in today&apos;s world. We focus on discipleship, leadership development, and practical life skills while building authentic relationships and preparing them for their calling in ministry, career, and family life.&quot;",
       motto: "YOUTH ALIVE !!",
       response: "RISING GIANTS",
       icon: "🔥",
@@ -43,33 +43,33 @@ const page = () => {
     {
       id: 4,
       title: "WORD OF FAITH BIBLE INSTITUTE (WOFBI)",
-      verse: "Study to show yourself approved unto God, a workman that needs not to be ashamed, rightly dividing the word of truth.",
+      verse: "&quot;Study to show yourself approved unto God, a workman that needs not to be ashamed, rightly dividing the word of truth.&quot;",
       reference: "2 Timothy 2:15",
-      benefit: "The Word of Faith Bible Institute [WOFBI] is a Ministry/Leadership Training Centre, wofbi is a winners based certificate course program which serves as the training arm of the Living Faith Church Worldwide. The courses are designed to motivate participants positively towards distinction both in their secular as well as spiritual engagement.",
+      benefit: "&quot;The Word of Faith Bible Institute [WOFBI] is a Ministry/Leadership Training Centre, wofbi is a winners based certificate course program which serves as the training arm of the Living Faith Church Worldwide. The courses are designed to motivate participants positively towards distinction both in their secular as well as spiritual engagement.&quot;",
       courses: [
         {
           name: "Junior Bible School (JBS)",
-          description: "Junior Bible School is a divine set up by God to help us correct a lot of issues in the lives of our children and make them align with His plans and purposes for them based on His Word."
+          description: "&quot;Junior Bible School is a divine set up by God to help us correct a lot of issues in the lives of our children and make them align with His plans and purposes for them based on His Word.&quot;"
         },
         {
           name: "Basic Certificate Course (BCC)",
-          description: "A foundational program that establishes solid biblical principles and fundamental Christian doctrines, equipping believers with essential knowledge for effective Christian living and basic ministry service."
+          description: "&quot;A foundational program that establishes solid biblical principles and fundamental Christian doctrines, equipping believers with essential knowledge for effective Christian living and basic ministry service.&quot;"
         },
         {
           name: "Leadership Certificate Course (LCC)",
-          description: "An intermediate program focused on developing leadership skills rooted in biblical principles, preparing participants for various leadership roles within the church and society with practical ministry training."
+          description: "&quot;An intermediate program focused on developing leadership skills rooted in biblical principles, preparing participants for various leadership roles within the church and society with practical ministry training.&quot;"
         },
         {
           name: "Leadership Diploma Course (LDC)",
-          description: "An advanced comprehensive program that provides in-depth theological training and advanced leadership development, preparing graduates for senior ministry positions and pastoral/leadership responsibilities."
+          description: "&quot;An advanced comprehensive program that provides in-depth theological training and advanced leadership development, preparing graduates for senior ministry positions and pastoral/leadership responsibilities.&quot;"
         }
       ],
       foundationSchool: {
         name: "FOUNDATION SCHOOL",
         subtitle: "BELIEVERS FOUNDATION/MEMBERSHIP CLASS",
-        quote: "If the foundations be destroyed, what can the righteous do?",
+        quote: "&quot;If the foundations be destroyed, what can the righteous do?&quot;",
         reference: "Psalm 11:3",
-        description: "Believers/Membership class held immediately after every service, first service 7:00AM and second service 9:00AM, for all first-time worshipers and new converts."
+        description: "&quot;Believers/Membership class held immediately after every service, first service 7:00AM and second service 9:00AM, for all first-time worshipers and new converts.&quot;"
       },
       icon: "📚",
       color: "from-red-50 to-grey-100",
@@ -142,7 +142,7 @@ const page = () => {
                 {/* Bible Verse */}
                 <div className={`bg-gradient-to-r ${ministry.color} p-6 rounded-xl border-l-4 ${ministry.borderColor} shadow-sm`}>
                   <blockquote className="text-red-600 font-medium  text-lg italic font-serif mb-3">
-                    "{ministry.verse}"
+                    <span dangerouslySetInnerHTML={{ __html: ministry.verse }} />
                   </blockquote>
                   <cite className="text-gray-600 font-semibold font-serif text-sm uppercase tracking-wide">
                     — {ministry.reference}
@@ -152,7 +152,7 @@ const page = () => {
                 {/* Ministry Benefit */}
                 <div className="prose prose-lg text-gray-700">
                   <p className="font-serif leading-relaxed text-base md:text-lg">
-                    {ministry.benefit}
+                    <span dangerouslySetInnerHTML={{ __html: ministry.benefit }} />
                   </p>
                 </div>
 
@@ -164,7 +164,9 @@ const page = () => {
                       {ministry.courses.map((course, courseIndex) => (
                         <div key={courseIndex} className="bg-white p-4 sm:p-6 rounded-lg shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow duration-300 w-full">
                           <h4 className="text-base font-serif sm:text-lg lg:text-xl font-bold text-red-500 mb-2 break-words">{course.name}</h4>
-                          <p className="text-gray-700 text-sm font-serif sm:text-base leading-relaxed">{course.description}</p>
+                          <p className="text-gray-700 text-sm font-serif sm:text-base leading-relaxed">
+                            <span dangerouslySetInnerHTML={{ __html: course.description }} />
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -186,7 +188,7 @@ const page = () => {
                         {/* Scripture Quote */}
                         <div className="bg-white p-4 sm:p-6 rounded-lg mb-4 font-serif sm:mb-6 border-l-4 border-red-500 shadow-sm">
                           <blockquote className="text-red-600 font-semibold font-serif text-base sm:text-lg lg:text-xl italic mb-3 text-center px-2 leading-relaxed">
-                            "{ministry.foundationSchool.quote}"
+                            <span dangerouslySetInnerHTML={{ __html: ministry.foundationSchool.quote }} />
                           </blockquote>
                           <cite className="text-gray-600 font-bold text-xs sm:text-sm text-center block">
                             — {ministry.foundationSchool.reference}
@@ -196,7 +198,7 @@ const page = () => {
                         {/* Description */}
                         <div className="text-center px-2 sm:px-4">
                           <p className="text-gray-800 font-serif font-semibold text-sm sm:text-base lg:text-lg leading-relaxed">
-                            {ministry.foundationSchool.description}
+                            <span dangerouslySetInnerHTML={{ __html: ministry.foundationSchool.description }} />
                           </p>
                         </div>
                         
