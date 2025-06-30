@@ -4,67 +4,67 @@ import Image from 'next/image';
 const Page = () => {
   const serviceUnits = [
     {
-      name: "CHOIR UNIT",
+      name: "CHOIR",
       image: "/choirunit.img.jpg",
       description: "The Choir Unit leads congregational worship through music and song, creating an atmosphere of praise and worship that draws hearts closer to God. This ministry enhances spiritual experience through music, facilitates worship expression, and brings unity in praise to glorify God&apos;s name.",
       kingdomBenefit: "Advances the Kingdom through spirit-filled worship that transforms hearts, draws souls to Christ, and creates an atmosphere where the Holy Spirit moves powerfully among God&apos;s people."
     },
     {
-      name: "TECHNICAL UNIT",
+      name: "TECHNICAL/MIDEA",
       image: "/technicalunit.jpg",
       description: "The Technical Unit manages sound systems, lighting, and audio-visual equipment to ensure seamless worship services and effective communication. This unit enables clear communication of God&apos;s word, enhances worship experience through quality sound and visuals, and supports ministry effectiveness.",
       kingdomBenefit: "Amplifies Kingdom impact by ensuring God&apos;s word reaches every ear clearly, enabling effective evangelism and discipleship through multimedia ministry that transcends traditional boundaries."
     },
     {
-      name: "USHERING UNIT",
+      name: "USHERING",
       image: "/usheringunit.img.jpg",
       description: "The Ushering Unit welcomes members and visitors, maintains order during services, and assists with seating and offering collection. This ministry creates a welcoming environment, ensures orderly worship, and demonstrates Christ&apos;s love through hospitality and service.",
       kingdomBenefit: "Extends Kingdom hospitality that makes newcomers feel God&apos;s love from the moment they arrive, creating pathways for salvation and church membership through genuine Christian welcome."
     },
     {
-      name: "GILEAD MEDICAL UNIT",
+      name: "GILEAD MEDICAL",
       image: "/gileadunit1.img.jpg",
       description: "The Gilead Medical Unit provides first aid and medical assistance during church services and events, caring for the physical well-being of the congregation. This unit demonstrates God&apos;s love through healing ministry, ensures safety during gatherings, and supports the holistic care of church members.",
       kingdomBenefit: "Manifests Kingdom healing power by providing physical care that opens hearts to receive spiritual healing, demonstrating Christ&apos;s compassion and creating opportunities for ministry and testimony."
     },
     {
-      name: "HOSPITALITY UNIT",
-      image: "/images/hospitality-unit.jpg",
+      name: "HOSPITALITY",
+      image: "/hospitalityunit.png",
       description: "The Hospitality Unit coordinates refreshments, special events, and creates a warm, welcoming atmosphere for fellowship and community building. This ministry fosters Christian fellowship, strengthens community bonds, and reflects God&apos;s love through service and care for others.",
       kingdomBenefit: "Builds Kingdom relationships through fellowship that strengthens faith, encourages believers, and creates environments where spiritual growth flourishes and divine connections are made."
     },
     {
-      name: "FOLLOW-UP AND VISITATION UNIT",
+      name: "FOLLOW-UP AND VISITATION",
       image: "/follow-upunit.jpg",
       description: "The Follow-up and Visitation Unit reaches out to new members, visits the sick and absent, and maintains connection with the church community. This unit strengthens pastoral care, ensures no one is forgotten, and extends the church&apos;s ministry beyond the sanctuary walls.",
       kingdomBenefit: "Expands Kingdom reach through personal discipleship and care that prevents backsliding, encourages spiritual growth, and demonstrates Christ&apos;s love in practical ways that lead to deeper commitment."
     },
     {
-      name: "SANCTUARY UNIT",
+      name: "SANCTUARY",
       image: "/sanctuaryunit.jpg",
       description: "The Sanctuary Unit maintains the cleanliness and sanctity of the worship space, ensuring a holy and reverent environment for worship. This ministry preserves the sacred atmosphere, honors God through excellence in facility care, and creates a conducive environment for worship.",
       kingdomBenefit: "Prepares Kingdom ground where God&apos;s presence dwells powerfully, creating sacred spaces that facilitate divine encounters, spiritual breakthrough, and life-transforming worship experiences."
     },
     {
-      name: "MAINTENANCE UNIT",
+      name: "MAINTENANCE",
       image: "/maintenanceunit.jpg",
       description: "The Maintenance Unit handles repairs, upkeep, and general maintenance of church facilities, ensuring a safe and functional worship environment. This unit protects church assets, ensures safety for all members, and demonstrates faithful stewardship of God&apos;s resources.",
       kingdomBenefit: "Preserves Kingdom infrastructure that enables continuous ministry, protects God&apos;s investment in His house, and ensures the church remains a beacon of hope and transformation in the community."
     },
     {
-      name: "&quot;PROTOCOL UNIT&quot;",
+      name: "PROTOCOL",
       image: "/protocolunit.jpg",
       description: "The Protocol Unit manages ceremonial aspects of worship, coordinates special events, and ensures proper conduct during services. This ministry maintains order and reverence in worship, facilitates smooth service flow, and upholds the dignity of sacred gatherings.",
       kingdomBenefit: "Establishes Kingdom order that reflects heaven&apos;s structure, creating environments where God&apos;s glory can be revealed powerfully and where spiritual protocols enhance divine encounters."
     },
     {
-      name: "CROWD CONTROL UNIT",
+      name: "CROWD CONTROL",
       image: "/crowdcontrolunit.jpg",
       description: "The Crowd Control Unit manages congregation flow, ensures safety during large gatherings, and maintains order in high-traffic areas. This unit ensures safety and security, prevents overcrowding, and creates a peaceful environment conducive to worship and fellowship.",
       kingdomBenefit: "Maintains Kingdom peace and safety that allows God&apos;s people to worship without distraction, ensuring every believer can focus on receiving from God and experiencing His presence freely."
     },
     {
-      name: "TRAFFIC UNIT",
+      name: "TRAFFIC",
       image: "/trafficunit.jpg",
       description: "The Traffic Unit manages parking and vehicular movement around church premises, ensuring smooth traffic flow and member safety. This ministry enhances safety and convenience, reduces congestion, and demonstrates care for the community through organized traffic management.",
       kingdomBenefit: "Facilitates Kingdom access by removing barriers that might prevent people from attending church, ensuring smooth arrival and departure that encourages consistent church attendance and participation."
@@ -93,7 +93,7 @@ const Page = () => {
       </div>
 
       {/* Service Units Section - Vertical Block Layout */}
-      <div className="container mx-auto px-6 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <div className="container mx-auto px-10 sm:px-6 lg:px-10 py-12 sm:py-16 lg:py-20">
         <div className="max-w-4xl mx-auto space-y-6 sm:space-y-12 lg:space-y-16">
           {serviceUnits.map((unit, index) => (
             <div 
@@ -160,7 +160,7 @@ const Page = () => {
             </cite>
           </div>
           
-          <div className="mt-6 sm:mt-8">
+          <div className="mt-6  mb-6 sm:mt-8">
             <button className="bg-white text-red-500 px-6  font-serif sm:px-8 py-3 sm:py-4 rounded-lg text-sm sm:text-base font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
               Join a Service Unit Today
             </button>
