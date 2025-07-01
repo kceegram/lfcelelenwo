@@ -25,12 +25,12 @@ export default function AutoType() {
     {
       id: 2,
       type: 'image',
-      image: '/aboutchurchimgii.jpg'
+      image: '/aboutchurchimgiii.jpg'
     },
     {
       id: 3,
       type: 'image',
-      image: '/aboutchurchimgiii.jpg'
+      image: '/aboutchurchimgii.jpg'
     },
     {
       id: 4,
