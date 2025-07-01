@@ -30,7 +30,7 @@ export default function AutoType() {
     {
       id: 3,
       type: 'image',
-      image: '/aboutchurchimgii.jpg'
+      image: '/homecell2.jpg'
     },
     {
       id: 4,
