@@ -35,7 +35,7 @@ export default function AutoType() {
     {
       id: 4,
       type: 'image',
-      image: '/aboutchurchimgi.jpg'
+      image: '/aboutchurchimg.jpg'
     },
     {
       id: 5,
