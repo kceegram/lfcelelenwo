@@ -25,23 +25,25 @@ export default function AutoType() {
     {
       id: 2,
       type: 'image',
-      image: '/opendoors.img.png'
+      image: '/opendoorsmob.img.png'
     },
-    {
-      id: 3,
-      type: 'image',
-      image: '/homecell2.jpg'
-    },
+
     {
       id: 4,
       type: 'image',
-      image: '/aboutchurchimg.jpg'
+      image: '/convenantexchangemob.img.png'
     },
     {
       id: 5,
       type: 'image',
-      image: '/homecell1.img.jpg'
+      image: '/neweramob.img.png'
+    },
+    {
+      id: 6,
+      type: 'image',
+      image: '/transportationmob.img.png'
     }
+
   ];
 
   // Auto-advance slides
@@ -177,14 +179,14 @@ export default function AutoType() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-7 h-7 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
       >
         <span className="text-white group-hover:text-red-500 transition-colors duration-200 text-2xl font-bold leading-none" style={{ transform: 'translateX(-1px)' }}>‹</span>
       </button>
       
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
+        className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-7 h-7 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
       >
         <span className="text-white group-hover:text-red-500 transition-colors duration-200 text-2xl font-bold leading-none" style={{ transform: 'translateX(1px)' }}>›</span>
       </button>
