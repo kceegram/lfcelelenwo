@@ -25,7 +25,7 @@ export default function AutoType() {
     {
       id: 2,
       type: 'image',
-      image: '/aboutchurchimgiii.jpg'
+      image: '/opendoors.img.png'
     },
     {
       id: 3,
@@ -177,14 +177,14 @@ export default function AutoType() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
       >
         <span className="text-white group-hover:text-red-500 transition-colors duration-200 text-2xl font-bold leading-none" style={{ transform: 'translateX(-1px)' }}>‹</span>
       </button>
       
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-12 h-12 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-grey-500 bg-opacity-20 hover:bg-opacity-30 hover:cursor-pointer backdrop-blur-sm rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 group border border-white border-opacity-30 shadow-lg"
       >
         <span className="text-white group-hover:text-red-500 transition-colors duration-200 text-2xl font-bold leading-none" style={{ transform: 'translateX(1px)' }}>›</span>
       </button>
