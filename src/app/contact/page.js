@@ -31,7 +31,7 @@ const Page = () => {
   }
 
   const openYouTube = () => {
-    window.open('https://www.youtube.com/@lfcelelenwo', '_blank')
+    window.open('https://www.youtube.com/@livingfaithchurchelelenwo3747', '_blank')
   }
 
   return (
@@ -123,7 +123,7 @@ const Page = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg "
                     placeholder="Enter your email address"
                   />
                 </div>
