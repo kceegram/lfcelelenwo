@@ -25,23 +25,29 @@ export default function AutoType() {
     {
       id: 2,
       type: 'image',
-      mobileImage: '/opendoorsmob.img.png',
-      desktopImage:'/opendoors.img.png'
+      mobileImage: '/rescuemob.img.png',
+      desktopImage:'/conofrescuedesk.img.png'
     },
     {
       id: 3,
+      type: 'image',
+      mobileImage: '/restorehealthmob.img.png',
+      desktopImage: '/restorehealthdesk.img.png'
+    },
+    {
+      id: 4,
       type: 'image',
       mobileImage: '/convenantexchangemob.img.png',
       desktopImage: '/conexchangedesk.img.png'
     },
     {
-      id: 4,
+      id: 5,
       type: 'image',
       mobileImage: '/neweramob.img.png',
       desktopImage: '/neweradesk.img.png'
     },
     {
-      id: 5,
+      id: 6,
       type: 'image',
       mobileImage: '/transportationmob.img.png',
       desktopImage: '/transportationdesk.img.png'
