@@ -25,31 +25,31 @@ export default function AutoType() {
     {
       id: 2,
       type: 'image',
-      mobileImage: '/rescuemob.img.png',
+      mobileImage: '/rescuemobile.img.png',
       desktopImage:'/conofrescuedesk.img.png'
     },
     {
       id: 3,
       type: 'image',
-      mobileImage: '/restorehealthmob.img.png',
+      mobileImage: '/restorehealthmobilei.img.png',
       desktopImage: '/restorehealthdesk.img.png'
     },
     {
       id: 4,
       type: 'image',
-      mobileImage: '/convenantexchangemob.img.png',
+      mobileImage: '/conexchangemob.img.png',
       desktopImage: '/conexchangedesk.img.png'
     },
     {
       id: 5,
       type: 'image',
-      mobileImage: '/neweramob.img.png',
+      mobileImage: '/neweramobile.img.png',
       desktopImage: '/neweradesk.img.png'
     },
     {
       id: 6,
       type: 'image',
-      mobileImage: '/transportationmob.img.png',
+      mobileImage: '/churchtransportmob.img.png',
       desktopImage: '/transportationdesk.img.png'
     }
   ];
