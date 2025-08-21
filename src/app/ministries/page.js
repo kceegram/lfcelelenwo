@@ -1,9 +1,29 @@
 'use client'
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 const page = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Show/hide scroll to top button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const ministries = [
     {
       id: 1,
@@ -113,7 +133,7 @@ const page = () => {
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {/* Overlay for better readability */}
-                    <div className="absolute inset-0  bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300 rounded-2xl"></div>
+                    <div className="absolute inset-0 bg-opacity-20 group-hover:bg-opacity-10 transition-all duration-300 rounded-2xl"></div>
                     
                     {/* Ministry Icon Overlay */}
                     <div className="absolute top-4 left-4 bg-white bg-opacity-90 rounded-full p-3 shadow-lg">
@@ -141,7 +161,7 @@ const page = () => {
 
                 {/* Bible Verse */}
                 <div className={`bg-gradient-to-r ${ministry.color} p-6 rounded-xl border-l-4 ${ministry.borderColor} shadow-sm`}>
-                  <blockquote className="text-red-600 font-medium  text-lg italic font-serif mb-3">
+                  <blockquote className="text-red-600 font-medium text-lg italic font-serif mb-3">
                     <span dangerouslySetInnerHTML={{ __html: ministry.verse }} />
                   </blockquote>
                   <cite className="text-gray-600 font-semibold font-serif text-sm uppercase tracking-wide">
@@ -230,6 +250,29 @@ const page = () => {
 
         
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

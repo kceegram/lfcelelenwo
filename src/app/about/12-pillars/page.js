@@ -1,6 +1,27 @@
-import React from 'react';
+'use client'
+import React, { useState, useEffect } from 'react';
 
 const page = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // Show/hide scroll to top button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const pillars = [
     {
       number: 1,
@@ -79,7 +100,7 @@ const page = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 font-serif">
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-red-500  to-red-600 text-white">
+      <div className="bg-gradient-to-r from-red-500 to-red-600 text-white">
         <div className="container mx-auto px-4 py-16 sm:py-20 lg:py-24">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-6 mt-10 tracking-tight">
@@ -114,21 +135,20 @@ const page = () => {
       </div>
 
       {/* Pillars Grid */}
-      <div className="container mx-auto px-4 pb-16 ">
+      <div className="container mx-auto px-4 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-6 mr-10 ml-10 sm:gap-6 sm:mr-4 max-w-7xl mx-auto">
           {pillars.map((pillar) => (
             <div 
               key={pillar.number}
               className="group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
             >
-              <div className="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white  sm:text-sm  relative">
-                
+              <div className="bg-gradient-to-r from-red-500 to-red-600 p-6 text-white sm:text-sm relative">
                 <div className="flex items-center justify-between relative text-sm z-10">
                   <div className="flex items-center space-x-3">
                     <div className="text-lg mr-6 font-semibold">
                       {pillar.number}
                     </div>
-                    <h3 className="font-bold text-lg  lg:text-lg tracking-wide">
+                    <h3 className="font-bold text-lg lg:text-lg tracking-wide">
                       {pillar.title}
                     </h3>
                   </div>
@@ -190,6 +210,29 @@ const page = () => {
         <div className="container mx-auto px-4 text-center">
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

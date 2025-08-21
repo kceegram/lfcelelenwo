@@ -5,6 +5,8 @@ import React from 'react'
 import Image from 'next/image'
 
 const Page = () => {
+   const [showScrollTop, setShowScrollTop] = useState(false);
+     
   useEffect(() => {
     // Initialize AOS when component mounts
     const initAOS = async () => {
@@ -18,9 +20,28 @@ const Page = () => {
         offset: 50,
         delay: 0,
       });
+
+
     };
 
     initAOS();
+
+    // Show/hide scroll to top button based on scroll position
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   }, []);
 
   return (
@@ -171,6 +192,29 @@ const Page = () => {
         </div>
 
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }

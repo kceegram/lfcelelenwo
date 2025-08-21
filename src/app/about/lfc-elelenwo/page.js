@@ -1,11 +1,11 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-
-
 const Page = () => {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+  
   useEffect(() => {
     // Initialize AOS when component mounts
     const initAOS = async () => {
@@ -22,7 +22,23 @@ const Page = () => {
     };
 
     initAOS();
+    
+    // Show/hide scroll to top button based on scroll position
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   // Custom SVG Icons
   const CalendarIcon = () => (
@@ -44,13 +60,6 @@ const Page = () => {
     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="10"></circle>
       <polyline points="12,6 12,12 16,14"></polyline>
-    </svg>
-  );
-
-  const MapPinIcon = () => (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path d="21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-      <circle cx="12" cy="10" r="3"></circle>
     </svg>
   );
 
@@ -105,7 +114,7 @@ const Page = () => {
           <h2 className='text-xl md:text-2xl lg:text-3xl font-bold text-white mb-2 hover:text-red-500 hover:cursor-pointer transition-colors duration-300 font-serif'>
             OUR LEADERSHIP
           </h2>
-          <p className="text-lg text-gray-500 max-w-2xl mx-auto  font-serif">
+          <p className="text-lg text-gray-500 max-w-2xl mx-auto font-serif">
             Meet the God-appointed leaders who guide and shepherd our congregation with wisdom and love
           </p>
         </div>
@@ -121,11 +130,11 @@ const Page = () => {
           data-aos-duration="2000"
           data-aos-delay="100"
         >
-          <div className="bg-white rounded-xl  lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 max-w-6xl mx-auto">
+          <div className="bg-white rounded-xl lg:rounded-2xl shadow-xl lg:shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 max-w-6xl mx-auto">
             <div className="flex flex-col lg:flex-row items-center">
               {/* Image Container */}
               <div className="w-full lg:w-2/5 relative">
-                <div className="relative h-full sm:h-full  md:h-full lg:h-[450px] overflow-hidden">
+                <div className="relative h-full sm:h-full md:h-full lg:h-[450px] overflow-hidden">
                   <Image
                     src="/BDO.jpg"
                     alt="Bishop David O. Oyedepo"
@@ -141,14 +150,14 @@ const Page = () => {
               {/* Content Container */}
               <div className="w-3/2 lg:w-3/5 p-6 sm:p-6 lg:p-12">
                 <div className="text-center lg:text-left">
-                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4  font-serif">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 font-serif">
                     BISHOP DAVID O. OYEDEPO
                   </h3>
                   <div className="flex items-center justify-center lg:justify-start mb-4">
                     <div className="w-8 sm:w-12 h-0.5 bg-red-500 mr-3"></div>
-                    <span className="text-red-600 font-semibold text-sm sm:text-base  font-serif lg:text-lg  font-serif">FOUNDER & PRESIDENT</span>
+                    <span className="text-red-600 font-semibold text-sm sm:text-base font-serif lg:text-lg font-serif">FOUNDER & PRESIDENT</span>
                   </div>
-                  <p className="text-gray-500 italic text-sm sm:text-base  font-serif lg:text-lg  font-serif">Living Faith Church Worldwide</p>
+                  <p className="text-gray-500 italic text-sm sm:text-base font-serif lg:text-lg font-serif">Living Faith Church Worldwide</p>
                 </div>
               </div>
             </div>
@@ -182,14 +191,14 @@ const Page = () => {
               {/* Content Container */}
               <div className="w-full lg:w-3/5 p-6 sm:p-8 lg:p-12">
                 <div className="text-center lg:text-right">
-                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4  font-serif">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 font-serif">
                     PASTOR MICHAEL OBAKHENA
                   </h3>
                   <div className="flex items-center justify-center lg:justify-end mb-4">
                     <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg text-center lg:text-right font-serif">DISTRICT, RESIDENT PASTOR</span>
                     <div className="w-8 sm:w-12 h-0.5 bg-red-500 ml-3"></div>
                   </div>
-                  <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg  font-serif">Living Faith Church Elelenwo</p>
+                  <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg font-serif">Living Faith Church Elelenwo</p>
                 </div>
               </div>
             </div>
@@ -223,14 +232,14 @@ const Page = () => {
               {/* Content Container */}
               <div className="w-full lg:w-2/5 p-8 sm:p-8 lg:p-12">
                 <div className="text-center lg:text-left">
-                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4  font-serif">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 font-serif">
                     PASTOR DAVID OLUWAROTIMI
                   </h3>
                   <div className="flex items-center justify-center lg:justify-start mb-4">
                     <div className="w-8 sm:w-12 h-0.5 bg-red-500 mr-3"></div>
-                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg text-center lg:text-left  font-serif">ASSISTANT DISTRICT, RESIDENT PASTOR</span>
+                    <span className="text-red-600 font-semibold text-sm sm:text-base lg:text-lg text-center lg:text-left font-serif">ASSISTANT DISTRICT, RESIDENT PASTOR</span>
                   </div>
-                  <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg  font-serif">Living Faith Church Elelenwo</p>
+                  <p className="text-gray-500 italic text-sm sm:text-base lg:text-lg font-serif">Living Faith Church Elelenwo</p>
                 </div>
               </div>
             </div>
@@ -243,7 +252,7 @@ const Page = () => {
         <div className="p-6 sm:p-8 lg:p-12">
           {/* Section Heading */}
           <div className="text-center mb-8 lg:mb-12">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 hover:text-red-600 hover:cursor-pointer transition-colors duration-300  font-serif">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 hover:text-red-600 hover:cursor-pointer transition-colors duration-300 font-serif">
               ABOUT LIVING FAITH CHURCH ELELENWO
             </h2>
             <div className="flex items-center justify-center mb-4">
@@ -254,15 +263,15 @@ const Page = () => {
           {/* Content */}
           <div className="max-w-4xl mx-auto">
             <div className="space-y-6 text-gray-700 leading-relaxed">
-              <p className="text-base md:text-xl font-medium text-gray-800 mb-8 text-center lg:text-left  font-serif">
+              <p className="text-base md:text-xl font-medium text-gray-800 mb-8 text-center lg:text-left font-serif">
                 Living Faith Church Elelenwo AKA <strong className="text-red-500">WINNERS CHAPEL ELELENWO</strong> is a living proof of the faithfulness of God, the validity of the liberation mandate and the spirit of God at work in this commission.
               </p>
               
-              <p className="text-base md:text-lg leading-7 mb-6  font-serif">
+              <p className="text-base md:text-lg leading-7 mb-6 font-serif">
                 Winners Chapel International Elelenwo is a branch of Living Faith Church Worldwide. We are a living proof of the faithfulness of God, the efficacy of the liberation mandate and the power of God at work in this commission. Great testimonies, healings, deliverance, change of stories, divine restorations and supernatural interventions in the lives of our members have been credited.
               </p>
               
-              <p className="text-base md:text-lg leading-7  font-serif">
+              <p className="text-base md:text-lg leading-7 font-serif">
                 Winners Chapel Elelenwo is a church where the undiluted word of faith is divinely backed-up with signs and wonders. In the past couple of years, the church has grown from strength to strength with diverse testimonies, success and undeniable presence of God in our midst and in the increased multitudes in all our services.
               </p>
             </div>
@@ -280,7 +289,7 @@ const Page = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            <div className="inline-flex items-center justify-center mb-4 ">  
+            <div className="inline-flex items-center justify-center mb-4">  
                <Image src="/images/winnerslogo.png" alt="Church Logo" width={70} height={80} className='pb-1'/>
             </div>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-4 font-serif hover:text-red-600 transition-colors duration-300 cursor-pointer">
@@ -351,7 +360,7 @@ const Page = () => {
             data-aos-duration="1200"
             data-aos-delay="600"
           >
-            <div className="bg-white  rounded-2xl shadow-xl p-8 lg:p-12 border border-gray-100">
+            <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12 border border-gray-100">
               <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4 font-serif">
                 Come As You Are
               </h3>
@@ -386,18 +395,41 @@ const Page = () => {
       {/* The Mandate */}
       <div className="text-center mt-20 ml-4 mr-4 md:mr-20 md:ml-20 mb-24 lg:mt-20 lg:mr-32 lg:ml-32 pt-10">
         <div className="bg-gradient-to-r from-red-500 to-red-600 rounded-2xl p-12 text-white shadow-2xl">
-          <h2 className='text-2xl md:text-2xl hover:text-yellow-500 hover:cursor-pointer lg:text-4xl font-bold md:font-bold lg:font-bold mb-4 mt-10 transition-colors duration-300  font-serif'>
+          <h2 className='text-2xl md:text-2xl hover:text-yellow-500 hover:cursor-pointer lg:text-4xl font-bold md:font-bold lg:font-bold mb-4 mt-10 transition-colors duration-300 font-serif'>
             LIVING FAITH CHURCH WORLDWIDE
           </h2>
-          <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold mb-6  font-serif">
+          <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold mb-6 font-serif">
             THE MANDATE
           </h2>
-          <p className="text-xl leading-relaxed max-w-4xl mx-auto opacity-95  font-serif">
+          <p className="text-xl leading-relaxed max-w-4xl mx-auto opacity-95 font-serif">
             &quot;Now the hour has come to liberate the world from all oppressions of the devil through the preaching of the word of faith, and I am sending you to undertake this task.&quot;
           </p>
           <div className="w-32 h-1 bg-white mx-auto mt-6 opacity-80"></div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }

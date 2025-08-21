@@ -1,11 +1,30 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const Page = () => {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [showScrollTop, setShowScrollTop] = useState(false)
+
+  // Show/hide scroll to top button based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault()
@@ -47,7 +66,7 @@ const Page = () => {
           className="w-full h-full object-cover"
         />
         {/* Optional overlay for better text readability */}
-        <div className="absolute inset-0  bg-opacity-30"></div>
+        <div className="absolute inset-0 bg-opacity-30"></div>
       </div>
         {/* Overlay */}
         
@@ -112,7 +131,7 @@ const Page = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <div onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
@@ -129,13 +148,13 @@ const Page = () => {
                 </div>
                 
                 <button
-                  type="submit"
+                  onClick={handleNewsletterSubmit}
                   disabled={isSubmitting}
                   className="w-full bg-red-500 hover:bg-red-600 hover:cursor-pointer disabled:bg-red-400 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
                 </button>
-              </form>
+              </div>
 
               {submitMessage && (
                 <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-500 rounded-lg">
@@ -236,6 +255,29 @@ const Page = () => {
           </div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          aria-label="Scroll to top"
+        >
+          <svg 
+            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M5 10l7-7m0 0l7 7m-7-7v18" 
+            />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }
