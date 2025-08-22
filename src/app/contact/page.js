@@ -1,11 +1,13 @@
-'use client'
+'Use client'
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const Page = () => {
   const [email, setEmail] = useState('')
+
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [messageType, setMessageType] = useState('') // 'success' or 'error'
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Show/hide scroll to top button based on scroll position
@@ -18,6 +20,21 @@ const Page = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Load EmailJS script dynamically
+  useEffect(() => {
+    const loadEmailJS = () => {
+      if (!window.emailjs) {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
+        script.onload = () => {
+          window.emailjs.init('FqokyhOwj9WqYevnP'); // Your EmailJS public key
+        };
+        document.head.appendChild(script);
+      }
+    };
+    loadEmailJS();
+  }, []);
+
   // Smooth scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
@@ -28,15 +45,98 @@ const Page = () => {
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault()
+    
+    if (!email) {
+      setSubmitMessage('Please enter a valid email address.')
+      setMessageType('error')
+      setTimeout(() => setSubmitMessage(''), 3000)
+      return
+    }
+
     setIsSubmitting(true)
     
-    // Simulate API call
-    setTimeout(() => {
-      setSubmitMessage('Thank you for subscribing to our newsletter!')
+    try {
+      if (window.emailjs) {
+        const currentDate = new Date().toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZoneName: 'short'
+        });
+
+        // 1. Send confirmation email to the subscriber
+        const subscriberTemplateParams = {
+          to_email: email,
+          subscriber_email: email,
+          church_name: 'Living Faith Church Elelenwo',
+          subscription_date: currentDate,
+          church_address: 'Odani Junction, Opposite Total Fuel Station, East West Road, Elelenwo, Port Harcourt, Rivers State',
+          church_phone: '07031048849, 08138060591',
+          church_email: 'lfcelelenwo@gmail.com',
+          facebook_link: 'https://www.facebook.com/lfcelelenwo',
+          youtube_link: 'https://www.youtube.com/@livingfaithchurchelelenwo3747'
+        };
+
+        await window.emailjs.send(
+          'service_lfcnews', // Replace with your EmailJS service ID
+          'template_subscriber_confirmation', // Template for subscriber confirmation
+          subscriberTemplateParams
+        );
+
+        // 2. Send notification email to the church admin
+        const adminTemplateParams = {
+          to_email: 'lfcelelenwo@gmail.com', // Church admin email
+          subscriber_email: email,
+          subscription_date: currentDate,
+          church_name: 'Living Faith Church Elelenwo'
+        };
+
+        await window.emailjs.send(
+          'service_lfcnews', // Replace with your EmailJS service ID
+          '', // Template for admin notification
+          adminTemplateParams
+        );
+      }
+
+      // Remove Mailchimp integration to avoid errors
+      // await subscribeToMailchimp(email);
+
+      setSubmitMessage('Thank you for subscribing! Please check your email for a confirmation message.')
+      setMessageType('success')
       setEmail('')
+    } catch (error) {
+      console.error('Subscription error:', error)
+      setSubmitMessage('Sorry, there was an error processing your subscription. Please try again.')
+      setMessageType('error')
+    } finally {
       setIsSubmitting(false)
-      setTimeout(() => setSubmitMessage(''), 3000)
-    }, 1000)
+      setTimeout(() => setSubmitMessage(''), 5000)
+    }
+  }
+
+  // Optional Mailchimp integration function
+  const subscribeToMailchimp = async (email) => {
+    try {
+      // This would typically go through your backend API to avoid CORS issues
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Newsletter subscription failed');
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.log('Mailchimp subscription failed:', error);
+      // Don't throw error here - EmailJS notification is more important
+    }
   }
 
   const openGoogleMaps = () => {
@@ -65,13 +165,8 @@ const Page = () => {
           priority
           className="w-full h-full object-cover"
         />
-        {/* Optional overlay for better text readability */}
         <div className="absolute inset-0 bg-opacity-30"></div>
       </div>
-        {/* Overlay */}
-        
-              
-              {/* Contact Info */}
               
       {/* Main Content Section */}
       <div className="max-w-7xl mx-auto px-4 py-16">
@@ -115,8 +210,8 @@ const Page = () => {
           </div>
 
           {/* Newsletter Section */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden ">
-            <div className="p-4 bg-gradient-to-r from-red-500 to-red-500 text-white ">
+          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div className="p-4 bg-gradient-to-r from-red-500 to-red-500 text-white">
               <h2 className="text-2xl font-bold mb-2">Stay Connected</h2>
               <p className="opacity-90">Subscribe to our newsletter for updates</p>
             </div>
@@ -131,7 +226,7 @@ const Page = () => {
                 </p>
               </div>
 
-              <div onSubmit={handleNewsletterSubmit} className="space-y-4">
+              <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
@@ -142,22 +237,27 @@ const Page = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg "
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors"
                     placeholder="Enter your email address"
+                    disabled={isSubmitting}
                   />
                 </div>
                 
                 <button
-                  onClick={handleNewsletterSubmit}
-                  disabled={isSubmitting}
-                  className="w-full bg-red-500 hover:bg-red-600 hover:cursor-pointer disabled:bg-red-400 text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
+                  type="submit"
+                  disabled={isSubmitting || !email}
+                  className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
                 >
                   {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
                 </button>
-              </div>
+              </form>
 
               {submitMessage && (
-                <div className="mt-4 p-3 bg-red-100 border border-red-300 text-red-500 rounded-lg">
+                <div className={`mt-4 p-3 border rounded-lg ${
+                  messageType === 'success' 
+                    ? 'bg-green-100 border-green-300 text-green-700'
+                    : 'bg-red-100 border-red-300 text-red-700'
+                }`}>
                   {submitMessage}
                 </div>
               )}
@@ -174,8 +274,6 @@ const Page = () => {
             </div>
           </div>
         </div>
-
-
 
         {/* Contact Cards Section */}
         <div className="mt-16">
@@ -249,7 +347,7 @@ const Page = () => {
               title="Subscribe to our YouTube channel"
             >
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
             </button>
           </div>

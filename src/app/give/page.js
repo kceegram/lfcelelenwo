@@ -1,4 +1,4 @@
-'use client'
+'Use client'
 
 import { useEffect } from 'react'
 import React from 'react'
