@@ -213,25 +213,43 @@ const Page = () => {
 
       {/* Scroll to Top Button */}
       {showScrollTop && (
-        <button
+       <button
           onClick={scrollToTop}
-          className="fixed bottom-6 right-8 z-50 bg-red-500 hover:bg-red-600 text-white p-3 font-bold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group hover:cursor-pointer"
+          className="
+            fixed 
+            bottom-4 right-4 md:bottom-6 md:right-8  /* 👈 smaller spacing on mobile */
+            z-50 
+            bg-red-500 hover:bg-red-600 
+            text-white 
+            p-2 md:p-3              /* 👈 smaller padding on mobile */
+            font-bold 
+            rounded-full 
+            shadow-lg hover:shadow-xl 
+            transition-all duration-300 
+            transform hover:scale-110 
+            group hover:cursor-pointer
+          "
           aria-label="Scroll to top"
         >
-          <svg 
-            className="w-6 h-6 transform group-hover:-translate-y-1 transition-transform duration-300" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M5 10l7-7m0 0l7 7m-7-7v18" 
-            />
-          </svg>
-        </button>
+        <svg
+          className="
+            w-5 h-5 md:w-6 md:h-6    /* 👈 smaller icon size on mobile */
+            transform group-hover:-translate-y-1 
+            transition-transform duration-300
+          "
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 10l7-7m0 0l7 7m-7-7v18"
+          />
+        </svg>
+     </button>
+        
       )}
     </div>
   );
