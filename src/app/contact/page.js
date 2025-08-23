@@ -1,14 +1,14 @@
-'Use client'
+"use client"
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
 const Page = () => {
   const [email, setEmail] = useState('')
-
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
   const [messageType, setMessageType] = useState('') // 'success' or 'error'
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [emailJSLoaded, setEmailJSLoaded] = useState(false)
 
   // Show/hide scroll to top button based on scroll position
   useEffect(() => {
@@ -27,9 +27,19 @@ const Page = () => {
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
         script.onload = () => {
-          window.emailjs.init('FqokyhOwj9WqYevnP'); // Your EmailJS public key
+          try {
+            window.emailjs.init('FqokyhOwj9WqYevnP'); // Your EmailJS public key
+            setEmailJSLoaded(true);
+          } catch (error) {
+            console.error('EmailJS initialization failed:', error);
+          }
+        };
+        script.onerror = () => {
+          console.error('Failed to load EmailJS script');
         };
         document.head.appendChild(script);
+      } else {
+        setEmailJSLoaded(true);
       }
     };
     loadEmailJS();
@@ -43,11 +53,26 @@ const Page = () => {
     });
   };
 
+  // Email validation function
+  const isValidEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault()
     
-    if (!email) {
+    // Validate email
+    if (!email || !isValidEmail(email)) {
       setSubmitMessage('Please enter a valid email address.')
+      setMessageType('error')
+      setTimeout(() => setSubmitMessage(''), 3000)
+      return
+    }
+
+    // Check if EmailJS is loaded
+    if (!emailJSLoaded || !window.emailjs) {
+      setSubmitMessage('Service is currently unavailable. Please try again later.')
       setMessageType('error')
       setTimeout(() => setSubmitMessage(''), 3000)
       return
@@ -56,86 +81,80 @@ const Page = () => {
     setIsSubmitting(true)
     
     try {
-      if (window.emailjs) {
-        const currentDate = new Date().toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric',
-          hour: '2-digit',
-          minute: '2-digit',
-          timeZoneName: 'short'
-        });
+      const currentDate = new Date().toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZoneName: 'short'
+      });
 
-        // 1. Send confirmation email to the subscriber
-        const subscriberTemplateParams = {
-          to_email: email,
-          subscriber_email: email,
-          church_name: 'Living Faith Church Elelenwo',
-          subscription_date: currentDate,
-          church_address: 'Odani Junction, Opposite Total Fuel Station, East West Road, Elelenwo, Port Harcourt, Rivers State',
-          church_phone: '07031048849, 08138060591',
-          church_email: 'lfcelelenwo@gmail.com',
-          facebook_link: 'https://www.facebook.com/lfcelelenwo',
-          youtube_link: 'https://www.youtube.com/@livingfaithchurchelelenwo3747'
-        };
+      // STEP 1: Send email to subscriber
+      // We need to specify the recipient email address
+      const subscriberTemplateParams = {
+        to_email: email, // This tells EmailJS WHERE to send the email
+        user_email: email, // Alternative parameter name
+        email: email, // Another alternative
+        subscription_date: currentDate
+      };
 
-        await window.emailjs.send(
-          'service_lfcnews', // Replace with your EmailJS service ID
-          'template_subscriber_confirmation', // Template for subscriber confirmation
-          subscriberTemplateParams
-        );
+      console.log('Testing subscriber email with params:', subscriberTemplateParams);
+      console.log('Using service ID: service_lfcnews');
+      console.log('Using template ID: template_ymefgyf');
 
-        // 2. Send notification email to the church admin
-        const adminTemplateParams = {
-          to_email: 'lfcelelenwo@gmail.com', // Church admin email
-          subscriber_email: email,
-          subscription_date: currentDate,
-          church_name: 'Living Faith Church Elelenwo'
-        };
+      // Send subscriber confirmation email
+      const subscriberResult = await window.emailjs.send(
+        'service_lfcnews',
+        'template_ymefgyf',
+        subscriberTemplateParams
+      );
 
-        await window.emailjs.send(
-          'service_lfcnews', // Replace with your EmailJS service ID
-          '', // Template for admin notification
-          adminTemplateParams
-        );
-      }
+      console.log('Subscriber email sent successfully:', subscriberResult);
 
-      // Remove Mailchimp integration to avoid errors
-      // await subscribeToMailchimp(email);
+      // STEP 2: Send email to admin
+      const adminTemplateParams = {
+        to_email: 'lfcelelenwo@gmail.com', // WHERE to send (admin email)
+        subscriber_email: email, // The subscriber's email for the message content
+        user_email: email, // Alternative parameter name
+        subscription_date: currentDate
+      };
+
+      console.log('Testing admin email with params:', adminTemplateParams);
+      console.log('Using service ID: service_lfcnews');
+      console.log('Using template ID: template_n782p7b');
+
+      const adminResult = await window.emailjs.send(
+        'service_lfcnews',
+        'template_n782p7b',
+        adminTemplateParams
+      );
+
+      console.log('Admin email sent successfully:', adminResult);
 
       setSubmitMessage('Thank you for subscribing! Please check your email for a confirmation message.')
       setMessageType('success')
       setEmail('')
     } catch (error) {
       console.error('Subscription error:', error)
-      setSubmitMessage('Sorry, there was an error processing your subscription. Please try again.')
+      console.error('Full error object:', JSON.stringify(error, null, 2));
+      
+      // Check which step failed
+      if (error.status === 422) {
+        setSubmitMessage(`Template/Parameter error. Check console for details. Error: ${error.text || error.message}`)
+      } else if (error.status === 400) {
+        setSubmitMessage('Invalid request. Please check your email address and try again.')
+      } else if (error.status === 401) {
+        setSubmitMessage('Service configuration error. Please try again later.')
+      } else if (error.status === 404) {
+        setSubmitMessage('Email service not found. Please contact support.')
+      } else {
+        setSubmitMessage(`Error: ${error.message || 'Unknown error occurred'}`)
+      }
       setMessageType('error')
     } finally {
       setIsSubmitting(false)
-      setTimeout(() => setSubmitMessage(''), 5000)
-    }
-  }
-
-  // Optional Mailchimp integration function
-  const subscribeToMailchimp = async (email) => {
-    try {
-      // This would typically go through your backend API to avoid CORS issues
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Newsletter subscription failed');
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.log('Mailchimp subscription failed:', error);
-      // Don't throw error here - EmailJS notification is more important
+      setTimeout(() => setSubmitMessage(''), 8000) // Longer timeout to read error
     }
   }
 
@@ -181,7 +200,7 @@ const Page = () => {
             <div className="p-6">
               <div className="aspect-video rounded-lg overflow-hidden shadow-md">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.5234567890123!2d7.0123456789!3d4.8234567890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDknMjQuNSJOIDfCsDAwJzQ0LjQiRQ!5e0!3m2!1sen!2sng!4v1234567890123!5m2!1sen!2sng"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.286486837935!2d6.9919278!3d4.8397222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1069d2b2a4c7e4d5%3A0x8b1c4d8e5f6a7b9c!2sElelenwo%2C%20Port%20Harcourt%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1692123456789!5m2!1sen!2sng"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -237,18 +256,18 @@ const Page = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-colors"
+                    className="w-full px-4 py-3 border border-gray-300 text-gray-700 rounded-lg focus:ring-2 focus:ring-red-200 focus:border-red-50 outline-none transition-colors"
                     placeholder="Enter your email address"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !emailJSLoaded}
                   />
                 </div>
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting || !email}
-                  className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg"
+                  disabled={isSubmitting || !email || !emailJSLoaded}
+                  className="w-full bg-red-500 hover:bg-red-600 disabled:bg-red-400 disabled:cursor-not-allowed text-white py-3 px-6 rounded-lg font-medium transition-colors duration-300 shadow-md hover:shadow-lg hover:cursor-pointer"
                 >
-                  {isSubmitting ? 'Subscribing...' : 'Subscribe to Newsletter'}
+                  {isSubmitting ? 'Subscribing...' : emailJSLoaded ? 'Subscribe to Newsletter' : 'Loading...'}
                 </button>
               </form>
 
@@ -347,7 +366,7 @@ const Page = () => {
               title="Subscribe to our YouTube channel"
             >
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.872.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
               </svg>
             </button>
           </div>
