@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-const page = () => {
+const Page = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Show/hide scroll to top button based on scroll position
@@ -277,4 +277,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

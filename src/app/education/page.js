@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Handle scroll visibility
@@ -161,4 +161,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
