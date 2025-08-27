@@ -23,6 +23,12 @@ export default function AutoType() {
       title: 'Welcome Section',
     },
     {
+      id: 2,
+      type: 'image',
+      mobileImage: '/enoughservicemob.img.png',
+      desktopImage: '/enoughservicedesk.img.png'
+    },
+    {
       id: 3,
       type: 'image',
       mobileImage: '/restorehealthmobilei.img.png',
