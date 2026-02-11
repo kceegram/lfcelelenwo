@@ -9,7 +9,7 @@ const Page = () => {
   // Carousel images - replace with your actual image paths
   const carouselImages = [
     "/KGMSnewimg2.jpeg",
-    "/KGMSnewimg3.jpeg"
+    "/KGMSnewimg4.jpeg"
   ];
 
   // Handle scroll visibility
