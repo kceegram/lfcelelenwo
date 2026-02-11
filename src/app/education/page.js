@@ -4,6 +4,13 @@ import Image from 'next/image'
 
 const Page = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel images - replace with your actual image paths
+  const carouselImages = [
+    "/KGMSnewimg2.jpeg",
+    "/KGMSnewimg3.jpeg"
+  ];
 
   // Handle scroll visibility
   useEffect(() => {
@@ -15,6 +22,15 @@ const Page = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto-scroll carousel every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 30000);
+
+    return () => clearInterval(interval);
+  }, [carouselImages.length]);
+
   // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({
@@ -23,22 +39,52 @@ const Page = () => {
     });
   };
 
+  // Navigate to specific slide
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Hero Image Section */}
-      <div className='relative w-full h-[60vh] md:h-[70vh] overflow-hidden'>
-        <Image
-          src="/educationimg.jpg"
-          alt="Kingdom Heritage Model School"
-          width={1920}
-          height={1080}
-          priority
-          className="w-full h-full object-cover"
-          data-aos="zoom-in" 
-          data-aos-duration="1000"
-        />
+      {/* Hero Carousel Section */}
+      <div className='relative w-full h-[50vh] md:h-[80vh] overflow-hidden bg-gray-100'>
+        {/* Carousel Images */}
+        {carouselImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            <Image
+              src={image}
+              alt={`Kingdom Heritage Model School - Image ${index + 1}`}
+              width={1920}
+              height={1080}
+              priority={index === 0}
+              className="w-full h-full object-contain md:object-cover"
+            />
+          </div>
+        ))}
+        
         {/* Optional overlay for better text readability */}
-        <div className="absolute inset-0  bg-opacity-30"></div>
+        <div className="absolute inset-0 bg-opacity-30"></div>
+
+        {/* Navigation Dots */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
+          {carouselImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`transition-all duration-300 bg-gray-400 ${
+                index === currentSlide 
+                  ? 'w-8 h-2 rounded-full'
+                  : 'w-2 h-2 rounded-full opacity-60 hover:opacity-100'
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
       
       {/* Content Section */}
@@ -140,11 +186,11 @@ const Page = () => {
              onClick={scrollToTop}
              className="
                fixed 
-               bottom-4 right-4 md:bottom-6 md:right-8  /* 👈 smaller spacing on mobile */
+               bottom-4 right-4 md:bottom-6 md:right-8
                z-50 
                bg-red-500 hover:bg-red-600 
                text-white 
-               p-2 md:p-3              /* 👈 smaller padding on mobile */
+               p-2 md:p-3
                font-bold 
                rounded-full 
                shadow-lg hover:shadow-xl 
@@ -156,11 +202,11 @@ const Page = () => {
            >
              <svg
                className="
-                 w-5 h-5 md:w-6 md:h-6    /* 👈 smaller icon size on mobile */
+                 w-5 h-5 md:w-6 md:h-6
                  transform group-hover:-translate-y-1 
                  transition-transform duration-300
                "
-                          fill="none"
+               fill="none"
                stroke="currentColor"
                viewBox="0 0 24 24"
              >

@@ -22,18 +22,7 @@ export default function AutoType() {
       desktopImage: '/lfchomewelcomeimg.jpg',
       title: 'Welcome Section',
     },
-    {
-      id: 4,
-      type: 'image',
-      mobileImage: '/conexchangemob.img.png',
-      desktopImage: '/conexchangedesk.img.png'
-    },
-    {
-      id: 5,
-      type: 'image',
-      mobileImage: '/neweramobile.img.png',
-      desktopImage: '/neweradesk.img.png'
-    },
+    
     {
       id: 6,
       type: 'image',

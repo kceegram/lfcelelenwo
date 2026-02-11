@@ -34,15 +34,15 @@ const Page = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
 
-  // Smooth scroll to top function
+  }, []);
+
+  // Smooth scroll to top function - FIXED: Moved outside useEffect
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
   };
-
-  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
