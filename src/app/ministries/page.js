@@ -55,7 +55,7 @@ const Page = () => {
       reference: "Ecclesiastes 12:1",
       benefit: "&quot;Our Youth Ministry empowers young adults to live out their faith boldly in today&apos;s world. We focus on discipleship, leadership development, and practical life skills while building authentic relationships and preparing them for their calling in ministry, career, and family life.&quot;",
       motto: "YOUTH ALIVE🔥 !!",
-      response: "RISING GIANTS",
+      response: "KINGDOM GIANTS",
       icon: "🔥",
       color: "from-red-50 to-gray-100",
       borderColor: "border-red-300"
